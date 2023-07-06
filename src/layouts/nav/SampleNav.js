@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SampleNav = () => {
     return (
-        <div className="flex  m-6 p-4 text-white font-extrabold">
+        <div className=" flex  m-6 p-4 text-white font-extrabold">
             <div className="m-4 text-4xl border-2">
                 <Link to={"/"}>Main</Link>
             </div>
