@@ -1,40 +1,33 @@
-import { useSearchParams } from "react-router-dom";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 import ListComponent from "../../components/board/ListComponent";
+import ListSearchComponent from "../../components/board/ListSearchComponent";
+import useQueryObj from "../../hooks/useQueryObj";
 
-const checkNull = (obj) => {
 
-    for (const attr in obj) {
-        const result = {}
 
-        for (const attr in obj) {
-            const attrName = attr
-            const attrValue = obj[attr]
+// const checkNull2 = (obj) => {
 
-            if (attrValue && attrValue !== 'null') {
-                result[attrName] = attrValue
-            }
-        }
+//     const result = {}
 
-        return result
+//     for (const attr in obj) {
+//         const attrName = attr
+//         const attrValue = obj[attr]
 
-    }
+//         if (attrValue && attrValue !== 'null') {
+//             result[attrName] = attrValue
+//         }
+//     }
 
-    return obj;
-}
+//     return result
+// }
 
 const ListPage = () => {
 
-    const [search, setSearch] = useSearchParams()
+    
 
-    console.log(search)
+    const {queryObj, setSearch,moveRead} = useQueryObj()
 
-    //useSearchParams값을 가져오는방법
-    const page = search.get("page") || 1
-    const size = search.get("size") || 10
-    const type = search.get("type")
-    const keyword = search.get("keyword")
-
-    const queryObj = checkNull({ page, size, type, keyword })
+    // hooks(use~)는 component바로 밑에서 선언해야함
 
     console.log("queryObj ------------------------ ")
     console.log(queryObj)
@@ -45,13 +38,30 @@ const ListPage = () => {
         setSearch({ ...queryObj })
     }
     // 리액트 라우터가 적용된 게시판
+    const moveSearch = (type, keyword) => {
+        queryObj.page = 1
+        queryObj.type = type
+        queryObj.keyword = keyword
+
+        setSearch({ ...queryObj })
+    }
+
+
 
     return (
 
         <div>
-            {/* Board List Page */}
-            <ListComponent queryObj={queryObj} movePage={movePage}></ListComponent>
+            Board List Page
+            <ListSearchComponent moveSearch={moveSearch} queryObj={queryObj}></ListSearchComponent>
+
+            <ListComponent
+                queryObj={queryObj}
+                movePage={movePage}
+                moveRead={moveRead}>
+
+            </ListComponent>
         </div>
+        //리액트 개발 순서 : 페이지 만들고-> 라우터-> 컴포넌트
     );
 }
 

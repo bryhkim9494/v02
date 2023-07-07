@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createSearchParams } from "react-router-dom";
 import { getList } from "../../api/boardAPI";
+import ListPageComponent from "../common/ListPageComponent";
 
 
 const initState = {
@@ -14,7 +15,8 @@ const initState = {
     size: 0,
     requestDTO: null,
 }
-const ListComponent = ({ queryObj, movePage }) => {
+
+const ListComponent = ({ queryObj, movePage, moveRead }) => {
 
     const [listData, setListData] = useState(initState);
 
@@ -25,25 +27,18 @@ const ListComponent = ({ queryObj, movePage }) => {
         })
     }, [queryObj])
 
-    const handleClickPage = (pageNum) => {
-        movePage(pageNum)
-    }
-
     return (
         <div>
             <div className="text-3xl font-bold mt-5 mb-3 text-center">List Component</div>
             <div>
                 <ul>
-                    {listData.dtoList.map(dto => <li className="text-gray-800 px-4 py-3 text-center" key={dto.bno}>{dto.bno} - {dto.title} - {dto.replyCount} </li>)}
+                    {listData.dtoList.map(dto =>
+                        <li className="bg text-gray-800 px-4 py-3 text-center" key={dto.bno}
+                            onClick={() => moveRead(dto.bno)}//파라미터가있으면 람다식
+                        >{dto.bno} - {dto.title} - {dto.replyCount} </li>)}
                 </ul>
             </div>
-            <div className="flex m-4 p-2">
-                <ul className="flex">
-                    {listData.prev ? <li className="m-2 p-2 bg-blue-500 border-2 text-white font-bold" onClick={()=>handleClickPage(listData.start-1)}>PREV</li> : <></>}
-                    {listData.pageNums.map(num => <li className="m-2 p-2 bg-blue-500 border-2 text-white font-bold" onClick={() => handleClickPage(num)} key={num}>{num}</li>)}
-                    {listData.next ? <li className="m-2 p-2 bg-blue-500 border-2 text-white font-bold" onClick={()=>handleClickPage(listData.end+1)}>NEXT</li> : <></>}
-                </ul>
-            </div>
+            <ListPageComponent movePage={movePage} {...listData}></ListPageComponent>
         </div>
     ); // use가 있는애들은 component에서만 사용
 }
