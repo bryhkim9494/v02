@@ -26,6 +26,15 @@ export const postProduct = async (formData) => {
 }
 
 export const getProduct = async (pno) => {
+    
     const res = await axios.get(`http://localhost:8080/api/products/${pno}`)
+    
+    return res.data
+}
+
+export const deleteProduct = async (pno) => {
+    
+    const res = await axios.delete(`http://localhost:8080/api/products/${pno}`)
+    
     return res.data
 }

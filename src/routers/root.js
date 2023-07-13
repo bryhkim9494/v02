@@ -15,8 +15,10 @@ const Board_Read = lazy(() => import("../pages/board/ReadPage"))
 const Products_Index = lazy(() => import("../pages/products/IndexPage"))
 const Products_List = lazy(() => import("../pages/products/ListPage"))
 const Products_Register = lazy(() => import("../pages/products/RegisterPage"))
+const Products_Read = lazy(() => import("../pages/products/ReadPage"))
+const Products_Modify = lazy(() => import("../pages/products/ModifyPage"))
 
-const router = createBrowserRouter([
+const router = createBrowserRouter([ //페이지는 무조건 라우팅설정
     {
         path: "", // 슬래쉬 굳이 안써도됨
         element: <MainPage></MainPage>
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
             {
                 path: "register",
                 element: <Suspense fallback={Loading}><Products_Register /></Suspense>
+            },
+            {
+                path: "read/:pno",
+                element: <Suspense fallback={Loading}><Products_Read /></Suspense>
+            },
+            {
+                path: "modify/:pno",
+                element: <Suspense fallback={Loading}><Products_Modify /></Suspense>
             }
         ]
     }
