@@ -16,6 +16,9 @@ const ReadComponent = ({ pno, moveModify, moveList }) => {
     useEffect(() => {
         getProduct(pno).then(data => {
             setProduct(data)
+        }).catch(e =>{
+            console.log(e)
+            moveList()
         })
     }, [pno])
 
@@ -40,7 +43,7 @@ const ReadComponent = ({ pno, moveModify, moveList }) => {
                     </ul>
                 </div>
                 <div>
-                    <button className="bg-blue-500 border-2 m-2 p-2 text-white font-extrabold " onClick={() => moveModify(product.pno)}>Modify</button>
+                    <button className="bg-orange-500 border-2 m-2 p-2 text-white font-extrabold " onClick={() => moveModify(product.pno)}>Modify</button>
                     <button className="bg-blue-500 border-2 m-2 p-2 text-white font-extrabold " onClick={moveList}>List</button>
                 </div>
             </div >
