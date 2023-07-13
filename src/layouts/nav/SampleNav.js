@@ -11,6 +11,9 @@ const SampleNav = () => {
                 <Link to={"/about"}>About</Link>
             </div>
             <div className="m-3 p-3 text-4xl border-2">
+                <Link to={"/products/list"}>Products</Link>
+            </div>
+            <div className="m-3 p-3 text-4xl border-2">
                 <Link to={"/board/list"}>Board</Link>
             </div>
         </div>

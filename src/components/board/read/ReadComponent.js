@@ -14,11 +14,11 @@ const initState = {
 
 const ReadComponent = ({bno}) => {
     const [board, setBoard] = useState(initState)
-    useEffect(() => {
-        getOne(bno).then(data => {
-            setBoard(data)
-        })
-    }, [bno])
+    // useEffect(() => {
+    //     getOne(bno).then(data => {
+    //         setBoard(data)
+    //     })
+    // }, [bno])
     return (
         <div className="col-span-12 ">
         <form className="bg-white shadow-md rounded-md p-4 ">

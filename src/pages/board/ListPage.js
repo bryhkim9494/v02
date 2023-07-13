@@ -25,7 +25,7 @@ const ListPage = () => {
 
     
 
-    const {queryObj, setSearch,moveRead} = useQueryObj()
+    const {queryObj, setSearch,moveRead} = useQueryObj() // useQueryObj는 커스텀훅스
 
     // hooks(use~)는 component바로 밑에서 선언해야함
 

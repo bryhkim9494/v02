@@ -19,7 +19,7 @@ const checkNull = (obj) => {
 
 const useQueryObj = () => {
 
-    const [search, setSearch] = useSearchParams()
+    const [search, setSearch] = useSearchParams() // 검색할때 사용
     const navigate = useNavigate()
 
     console.log(search)
