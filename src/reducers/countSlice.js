@@ -6,11 +6,21 @@ const countSlice = createSlice({// createSlice도 함수임 , 옵션을 추가�
     name: 'CountSlice',
     initialState: { num: 5 },
     reducers: {
-        inc: (state) => {
-            console.log("inc........")
+        inc: (state, param, third) => {
+            console.log(state)
+            console.log(param)
+            console.log(third)
+            console.log('--------------------------------')
+            return { num: state.num + param.payload }
+
+
         },
-        dec: (state) => {
-            console.log("dec........")
+        dec: (state, param, third) => {
+            console.log(state)
+            console.log(param)
+            console.log(third)
+            console.log('--------------------------------')
+            return { num: state.num - param.payload }
         }
     }
 
