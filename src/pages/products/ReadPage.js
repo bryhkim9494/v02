@@ -9,7 +9,7 @@ const ReadPage = () => {
     const { pno } = useParams()
 
     useCustomLogin(() => {
-        alert('로그인 좀 부탁해요...please')
+        alert('로그인 좀 부탁해요!')
     })
 
     console.log(pno)

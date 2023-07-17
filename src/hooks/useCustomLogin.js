@@ -10,17 +10,17 @@ const useCustomLogin = (fn) => {
     useEffect(() => {
 
         if (fn) {
-            if (!loginInfo.signed) {
+            if (!loginInfo.email) {
                 fn(navigate) // 함수를 실행한다는뜻
             }
             return
         }
 
-        console.log("signed: " + loginInfo.signed)
-        if (!loginInfo.signed) { // 이 if절 코드가 login안하면 about페이지에 못들어가게 하는 코드임
+        console.log("signed: " + loginInfo.email)
+        if (!loginInfo.email) { // 이 if절 코드가 login안하면 about페이지에 못들어가게 하는 코드임
             navigate('/member/login')
         }
-    }, [loginInfo.signed])
+    }, [loginInfo.email])
 
     return { loginInfo }
 

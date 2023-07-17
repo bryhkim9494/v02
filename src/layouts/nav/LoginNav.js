@@ -1,22 +1,24 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CartNav from "./CartNav";
 
 
 const LoginNav = () => {
 
-    const { email, signed } = useSelector(state => state.login)
-    console.log("LoginNav..............", email, signed)
-    if (signed) {
+    const { email, nickname } = useSelector(state => state.login)
+    console.log("LoginNav..............", email)
+    if (email !== '') {
         return (
             <div>
                 <div>
-                    {email}
+                    {email} - {nickname}
                 </div>
+                <CartNav></CartNav>
             </div>
         )
     }
     return (
-        <div>
+        <div className="m-2 p-2">
             <div>
                 <Link to={"/member/login"}>LOGIN</Link>
             </div>
