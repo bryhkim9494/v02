@@ -6,6 +6,7 @@ import IndexPage from "../pages/board/IndexPage";
 
 import { Suspense, lazy } from "react";
 import LoadingPage from "../pages/LoadingPage";
+import KakaoRedirectPage from "../pages/member/KakaoRedirectPage";
 
 const Loading = <LoadingPage></LoadingPage>
 const Board_Index = lazy(() => import("../pages/board/IndexPage"))
@@ -34,6 +35,12 @@ const router = createBrowserRouter([ //페이지는 무조건 라우팅설정
         path: "member/login",
         element: <Suspense fallback={Loading}><Member_Login /></Suspense>,
     },
+
+    {
+        path: 'member/kakao',
+        element: <KakaoRedirectPage></KakaoRedirectPage>
+    },
+
     {
         path: "board",
         element: <Suspense fallback={Loading}><Board_Index /></Suspense>,
