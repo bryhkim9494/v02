@@ -1,14 +1,53 @@
-import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { requestLogin } from "../../reducers/loginSlice";
+// import { getAccessToken, getUserEmail } from "../../api/kakaoAPI";
 
 
 const KakaoRedirectPage = () => { // 파라미터 수집하려고 이 페이지를 만듬
 
     const [searchParams] = useSearchParams()
-    const code = searchParams.get('code')
+    const authCode = searchParams.get('code')
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+
+
+        axios.get(`http://localhost:8080/api/member/kakao?code=${authCode}`).then(res => {
+
+            console.log(res.data)
+
+            const memberInfo = res.data
+
+            const nickname = memberInfo.nickname
+
+            dispatch(requestLogin(memberInfo))
+
+            // alert('로그인 성공')
+            if (nickname === 'SOCIAL_MEMBER') {
+                navigate('/member/modify') // 아직 경로 modify페이지 안만들어놓음
+            } else {
+                navigate('/')
+            }
+
+        })
+
+
+
+        // getAccessToken(authCode).then(accessToken => {
+        //     console.log(accessToken)
+        //     getUserEmail(accessToken).then(email => {
+        //         console.log("EMAIL : " + email)
+        //     })
+        // })
+    }, [authCode])
 
     return (
         <div>
-            {code}
+            {authCode}
         </div>
     );
 }

@@ -32,14 +32,13 @@ const loginSlice = createSlice({
     name: 'loginSlice',
     initialState: loadCookie(),
     reducers: {
-        requestLogin: (state, param) => {
-            const payload = param.payload
+        requestLogin: (state, action) => {
+            const payload = action.payload
             console.log("requestLogin", payload)
-            const loginObj = { email: payload.email, signed: true }
 
-            setCookie("login", JSON.stringify(loginObj), 1) // 쿠키에 저장하는 코드 , loginObj는 payload값
+            setCookie("login", JSON.stringify(payload), 1) // 쿠키에 저장하는 코드 , loginObj는 payload값
 
-            return loginObj
+            return payload
         }
     },
     extraReducers: (builder) => {
@@ -67,7 +66,6 @@ const loginSlice = createSlice({
     }
 })
 
-// export const { requestLogin } = loginSlice.actions // 밑에 두줄은 RTK에서 이렇게 쓰라고 그냥 외우면 편함
-
+export const { requestLogin } = loginSlice.actions // 밑에 두줄은 RTK에서 이렇게 쓰라고 그냥 외우면 편함
 
 export default loginSlice.reducer
