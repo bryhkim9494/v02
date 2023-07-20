@@ -27,6 +27,10 @@ const ListComponent = ({ queryObj, movePage, moveRead }) => {
     getList(queryObj).then(data => {
       console.log(data)
       setListData(data)
+    }).catch(err => {
+      console.log("------------------------------------------------------")
+      console.log(err)
+      console.log("------------------------------------------------------")
     })
 
   }, [queryObj])
@@ -49,9 +53,9 @@ const ListComponent = ({ queryObj, movePage, moveRead }) => {
               </div>
               <div className="flex justify-center items-center">
                 <img src={`http://localhost/s_${dto.fname}`} alt="add"></img>
-              <div className="text-center text-white font-extrabold">{dto.pname} - {dto.price} 리뷰  {dto.reviewCnt} - {dto.reviewAvg} </div>
-              <div>
-              </div>
+                <div className="text-center text-white font-extrabold">{dto.pname} - {dto.price} 리뷰  {dto.reviewCnt} - {dto.reviewAvg} </div>
+                <div>
+                </div>
               </div>
             </li>)}
 

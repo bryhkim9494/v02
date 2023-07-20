@@ -38,7 +38,8 @@ const loginSlice = createSlice({
 
             setCookie("login", JSON.stringify(payload), 1) // 쿠키에 저장하는 코드 , loginObj는 payload값
 
-            return payload
+            
+            return {...action.payload, loading:false}
         }
     },
     extraReducers: (builder) => {
