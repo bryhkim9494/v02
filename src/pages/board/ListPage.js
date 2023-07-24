@@ -25,6 +25,7 @@ const ListPage = () => {
 
     
 
+    // useQueryObj 커스텀 훅을 사용하여 쿼리 파라미터와 관련된 상태와 함수를 가져옵니다.
     const {queryObj, setSearch,moveRead} = useQueryObj() // useQueryObj는 커스텀훅스
 
     // hooks(use~)는 component바로 밑에서 선언해야함
@@ -32,7 +33,7 @@ const ListPage = () => {
     console.log("queryObj ------------------------ ")
     console.log(queryObj)
 
-    const movePage = (num) => {
+    const movePage = (num) => {  // 페이지 이동 시 호출되는 함수로, 페이지 번호를 업데이트하여 쿼리 파라미터를 변경합니다.
         console.log("NUM ------------------------" + num)
         queryObj.page = num
         setSearch({ ...queryObj })
@@ -50,10 +51,13 @@ const ListPage = () => {
 
     return (
 
+        // 게시판 목록 페이지를 렌더링합니다.
         <div>
             <div className="font-bold text-4xl">Board List Page</div>
+             {/* 검색 기능을 제공하는 ListSearchComponent 컴포넌트를 렌더링합니다. */}
             <ListSearchComponent moveSearch={moveSearch} queryObj={queryObj}></ListSearchComponent>
 
+            {/* 게시글 목록을 표시하는 ListComponent 컴포넌트를 렌더링합니다. */}
             <ListComponent
                 queryObj={queryObj}
                 movePage={movePage}
