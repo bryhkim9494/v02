@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 import { deleteProduct, getProduct, putProduct } from "../../api/productAPI"
 
+// 초기 상태값을 정의하는 객체입니다.
 const initState = {
-    pno: 0,
-    pname: '',
-    pdesc: '',
-    price: 0,
-    images: [],
+    pno: 0,         // 상품 번호
+    pname: '',      // 상품 이름
+    pdesc: '',      // 상품 설명
+    price: 0,       // 상품 가격
+    images: [],     // 상품 이미지 배열
 }
 
+// ModifyComponent 컴포넌트를 정의합니다.
 const ModifyComponent = ({ pno, moveList, moveRead }) => {
 
     const fileRef = useRef()
