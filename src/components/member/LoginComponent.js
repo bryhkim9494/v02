@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postLoginThunk, requestLogin } from "../../reducers/loginSlice";
 
+// 초기 로그인 상태를 정의하는 객체입니다.
 const initState = {
-    email: 'user00@aaa.com',
-    pw: '1111', //비밀번호
+    email: 'user00@aaa.com', // 이메일
+    pw: '1111', // 비밀번호
 }
 
 const LoginComponent = () => {
 
+    // Redux 스토어에서 loginSlice의 상태를 가져오는 훅입니다.
     const loginState = useSelector(state => state.login)
 
     const [loginInfo, setLoginInfo] = useState({ ...initState })
